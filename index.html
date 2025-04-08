@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Techlux PDV</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+    }
+    header {
+      background-color: #1a237e;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    nav {
+      background: #283593;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+    }
+    nav button {
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .active {
+      background-color: #3f51b5;
+    }
+    .container {
+      padding: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #1a237e;
+      color: white;
+    }
+    input, select, button {
+      padding: 10px;
+      margin: 5px;
+      font-size: 14px;
+    }
+    .section {
+      display: none;
+    }
+    .show {
+      display: block;
+    }
+    .pdv-box {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 600px;
+    }
+    .pdv-box input, .pdv-box select {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Techlux - Sistema de Vendas</h1>
+  </header>
+
+  <nav>
+    <button onclick="abrirAba('pdv')">PDV</button>
+    <button onclick="abrirAba('produtos')">Produtos</button>
+    <button onclick="abrirAba('estoque')">Estoque</button>
+    <button onclick="abrirAba('vendas')">Vendas</button>
+    <button onclick="abrirAba('relatorios')">Relatórios</button>
+    <button onclick="abrirAba('usuarios')">Usuários</button>
+    <button onclick="abrirAba('config')">Configurações</button>
+  </nav>
+
+  <div class="container">
+    <div id="pdv" class="section show">
+      <h2>PDV - Caixa</h2>
+      <div class="pdv-box">
+        <input type="text" placeholder="Código do Produto">
+        <input type="text" placeholder="Nome do Produto" disabled>
+        <input type="number" placeholder="Quantidade">
+        <input type="number" placeholder="Preço Unitário">
+        <input type="number" placeholder="Desconto (R$)">
+        <input type="text" placeholder="Total" disabled>
+        <button>Finalizar Venda</button>
+        <button onclick="abrirAba('vendas')">Ver Vendas</button>
+      </div>
+    </div>
+
+    <div id="produtos" class="section">
+      <h2>Cadastro de Produtos</h2>
+      <input type="text" placeholder="Código">
+      <input type="text" placeholder="Nome do Produto">
+      <input type="number" placeholder="Preço">
+      <input type="number" placeholder="Quantidade">
+      <button>Cadastrar</button>
+      <table>
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Produto</th>
+            <th>Preço</th>
+            <th>Estoque</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>001</td>
+            <td>Carregador</td>
+            <td>25,00</td>
+            <td>50</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="estoque" class="section">
+      <h2>Controle de Estoque</h2>
+      <p>Acompanhe o estoque em tempo real e atualize as quantidades.</p>
+    </div>
+
+    <div id="vendas" class="section">
+      <h2>Histórico de Vendas</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Produto</th>
+            <th>Qtd</th>
+            <th>Total</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>001</td>
+            <td>Carregador</td>
+            <td>2</td>
+            <td>50,00</td>
+            <td>Realizada</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="relatorios" class="section">
+      <h2>Relatórios</h2>
+      <p>Resumo de Vendas, Produtos mais vendidos, Cancelamentos, etc.</p>
+    </div>
+
+    <div id="usuarios" class="section">
+      <h2>Usuários do Sistema</h2>
+      <p>Gerencie quem pode acessar o sistema e suas permissões.</p>
+    </div>
+
+    <div id="config" class="section">
+      <h2>Configurações</h2>
+      <p>Defina senha de cancelamento, impressão de notinha, etc.</p>
+    </div>
+  </div>
+
+  <script>
+    function abrirAba(id) {
+      document.querySelectorAll('.section').forEach(sec => sec.classList.remove('show'));
+      document.getElementById(id).classList.add('show');
+    }
+  </script>
+</body>
+</html>
